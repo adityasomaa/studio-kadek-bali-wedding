@@ -1,0 +1,483 @@
+@import 'tailwindcss';
+@import './components.css';
+
+/* ============================================================================
+ * FONTS — Neue Montreal, self-hosted WOFF2.
+ * Regenerate from the licensed TTFs with `npm run fonts`.
+ * ==========================================================================*/
+@layer base {
+  @font-face {
+    font-family: 'Neue Montreal';
+    src: url('/fonts/NeueMontreal-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Neue Montreal';
+    src: url('/fonts/NeueMontreal-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Neue Montreal';
+    src: url('/fonts/NeueMontreal-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Neue Montreal';
+    src: url('/fonts/NeueMontreal-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+}
+
+/* ============================================================================
+ * ACCENT SOURCE OF TRUTH
+ * --accent-c and --accent-h are written onto <html> by the root layout, read
+ * straight from src/config/client.config.ts. Everything below derives from
+ * them, so swapping a client's accent never touches this file.
+ * The lightness steps are fixed and contrast-checked: `npm run audit:contrast`.
+ * ==========================================================================*/
+@layer base {
+  :root {
+    --accent-c: 0.108;
+    --accent-h: 42;
+
+    /* Surfaces — warm paper, tinted toward the accent hue, never pure white. */
+    --paper: oklch(0.986 0.004 var(--accent-h));
+    --paper-2: oklch(0.962 0.008 var(--accent-h));
+    --paper-3: oklch(0.928 0.012 var(--accent-h));
+
+    /* Ink — warm near-black, never pure black. */
+    --ink: oklch(0.235 0.018 var(--accent-h));
+    --ink-muted: oklch(0.452 0.017 var(--accent-h));
+    --ink-faint: oklch(0.532 0.016 var(--accent-h));
+
+    /* Hairlines. Non-text, so not held to the 4.5:1 text rule. */
+    --line: oklch(0.878 0.011 var(--accent-h));
+    --line-strong: oklch(0.795 0.015 var(--accent-h));
+    /* Borders that are the only visual boundary of a control need 3:1
+       (WCAG 1.4.11). Plain dividers above are decorative and do not. */
+    --border-control: oklch(0.598 0.021 var(--accent-h));
+
+    /* Accent ramp. */
+    --accent: oklch(0.502 var(--accent-c) var(--accent-h));
+    --accent-ink: oklch(0.432 var(--accent-c) var(--accent-h));
+    --accent-hover: oklch(0.44 var(--accent-c) var(--accent-h));
+    --accent-soft: oklch(0.955 calc(var(--accent-c) * 0.19) var(--accent-h));
+    --accent-line: oklch(0.86 calc(var(--accent-c) * 0.35) var(--accent-h));
+    --on-accent: oklch(0.99 0.004 var(--accent-h));
+
+    /* Focus ring, deliberately not the accent so it stays visible on accent fills. */
+    --focus: oklch(0.42 0.14 264);
+
+    /* Shadows are written in sRGB with a plain alpha channel. Translucent
+       oklch()/color-mix() values were not compositing reliably, and a shadow
+       that disappears takes the sense of elevation with it. Warm-neutral so it
+       still sits with the paper, and independent of the accent on purpose. */
+    --shadow-strong: rgb(48 33 26 / 0.42);
+
+    /* ----------------------------------------------------------------------
+     * Z-INDEX SCALE — the only place a stacking number is written.
+     * content < sticky header < mobile menu < lightbox/calendar
+     *   < cookie banner < page-transition curtain < skip link
+     * --------------------------------------------------------------------*/
+    --z-below: -1;
+    --z-base: 0;
+    --z-raised: 10;
+    --z-header: 100;
+    --z-menu: 200;
+    --z-overlay: 300;
+    --z-cookie: 400;
+    --z-curtain: 450;
+    --z-skip: 500;
+
+    /* Rhythm */
+    --shell-x: 1.25rem;
+    --header-h: 4.25rem;
+
+    /* Motion */
+    --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  @media (min-width: 48rem) {
+    :root {
+      --shell-x: 2.5rem;
+      --header-h: 5rem;
+    }
+  }
+  @media (min-width: 80rem) {
+    :root {
+      --shell-x: 4rem;
+    }
+  }
+}
+
+@theme inline {
+  --font-sans: 'Neue Montreal', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-paper-3: var(--paper-3);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-border-control: var(--border-control);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-line: var(--accent-line);
+  --color-on-accent: var(--on-accent);
+
+  --z-index-below: var(--z-below);
+  --z-index-base: var(--z-base);
+  --z-index-raised: var(--z-raised);
+  --z-index-header: var(--z-header);
+  --z-index-menu: var(--z-menu);
+  --z-index-overlay: var(--z-overlay);
+  --z-index-cookie: var(--z-cookie);
+  --z-index-curtain: var(--z-curtain);
+  --z-index-skip: var(--z-skip);
+
+  --ease-out-quint: var(--ease-out-quint);
+  --ease-out-quart: var(--ease-out-quart);
+}
+
+/* ============================================================================
+ * BASE
+ * ==========================================================================*/
+@layer base {
+  * {
+    min-width: 0;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: auto;
+  }
+
+  html,
+  body {
+    /* The horizontal-overflow audit must stay at zero offenders; this is the
+       backstop, not the fix. Offenders are corrected at the component. */
+    overflow-x: clip;
+  }
+
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-synthesis-weight: none;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: var(--on-accent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Lenis is only mounted on pointer-fine desktop widths. */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: clip;
+  }
+
+  /* Body scroll lock used by the lightbox, the calendar and the mobile menu.
+     `overflow: hidden` alone is not enough: it collapses the document's
+     scrollable height, the browser clamps scrollY to the new maximum, and the
+     page has silently jumped by the time the overlay closes. Pinning the body
+     at its current offset keeps the visual position exactly, and is also what
+     stops iOS rubber-banding the page behind the overlay. */
+  body[data-scroll-locked='true'] {
+    position: fixed;
+    top: calc(-1 * var(--locked-scroll, 0px));
+    left: 0;
+    right: 0;
+    width: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+}
+
+/* ============================================================================
+ * TYPOGRAPHY
+ * Line-count discipline is enforced per viewport, not globally:
+ *   phone   up to 3 lines
+ *   tablet  up to 2 lines
+ *   desktop 1 line where the string allows it
+ * The levers are font-size and max-inline-size per breakpoint plus balanced
+ * wrapping. There are no hard-coded line breaks anywhere in the markup.
+ * `npm run audit:headings` measures the rendered result.
+ * ==========================================================================*/
+@layer components {
+  .headline-xl,
+  .headline-lg,
+  .headline-md,
+  .headline-sm {
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.04;
+    text-wrap: balance;
+    hyphens: manual;
+  }
+
+  .headline-xl {
+    font-size: clamp(2.5rem, 11vw, 3.75rem);
+    max-inline-size: 11ch;
+    line-height: 1.02;
+    letter-spacing: -0.028em;
+  }
+
+  .headline-lg {
+    font-size: clamp(1.9rem, 8vw, 2.6rem);
+    max-inline-size: 15ch;
+  }
+
+  .headline-md {
+    font-size: clamp(1.45rem, 6vw, 1.85rem);
+    max-inline-size: 18ch;
+    line-height: 1.1;
+  }
+
+  .headline-sm {
+    font-size: clamp(1.125rem, 4.5vw, 1.3rem);
+    max-inline-size: 24ch;
+    line-height: 1.18;
+    letter-spacing: -0.012em;
+  }
+
+  /* Tablet: two lines is the ceiling, so the measure widens and the size drops
+     relative to the viewport. */
+  @media (min-width: 48rem) {
+    .headline-xl {
+      font-size: clamp(3.25rem, 7vw, 5rem);
+      max-inline-size: 17ch;
+    }
+    .headline-lg {
+      font-size: clamp(2.4rem, 4.6vw, 3rem);
+      max-inline-size: 22ch;
+    }
+    .headline-md {
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      max-inline-size: 24ch;
+    }
+    .headline-sm {
+      font-size: 1.3rem;
+      max-inline-size: 32ch;
+    }
+  }
+
+  /* Desktop: the measure is opened far enough that a single line is the
+     natural outcome for the strings this site ships with. */
+  @media (min-width: 64rem) {
+    .headline-xl {
+      /* --display-cap is written onto <html> from the length of the client
+         name; see displayCap() in the locale layout. A single fixed size
+         either wastes the screen on a short name or pushes a long one onto a
+         third line. */
+      font-size: clamp(3rem, 5.6vw, var(--display-cap, 6.25rem));
+      max-inline-size: 24ch;
+    }
+    .headline-lg {
+      font-size: clamp(2.6rem, 3.6vw, 3.5rem);
+      max-inline-size: 40ch;
+      text-wrap: pretty;
+    }
+    .headline-md {
+      font-size: 2rem;
+      max-inline-size: 42ch;
+      text-wrap: pretty;
+    }
+    .headline-sm {
+      font-size: 1.375rem;
+      max-inline-size: 46ch;
+    }
+  }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+  }
+
+  .lede {
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--ink-muted);
+    max-inline-size: 62ch;
+  }
+
+  @media (min-width: 48rem) {
+    .lede {
+      font-size: 1.1875rem;
+      line-height: 1.6;
+      max-inline-size: 66ch;
+    }
+  }
+
+  .prose-body p {
+    color: var(--ink-muted);
+    line-height: 1.7;
+    max-inline-size: 68ch;
+  }
+  .prose-body p + p {
+    margin-top: 0.9rem;
+  }
+
+  /* --------------------------------------------------------------------
+   * Shell + rules
+   * ------------------------------------------------------------------*/
+  .shell {
+    width: 100%;
+    max-width: 90rem;
+    margin-inline: auto;
+    padding-inline: var(--shell-x);
+  }
+
+  .rule {
+    border: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  /* --------------------------------------------------------------------
+   * Buttons
+   * ------------------------------------------------------------------*/
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.875rem;
+    padding-inline: 1.375rem;
+    border-radius: 999px;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    text-align: center;
+    transition:
+      background-color 0.35s var(--ease-out-quart),
+      color 0.35s var(--ease-out-quart),
+      border-color 0.35s var(--ease-out-quart),
+      transform 0.2s var(--ease-out-quart);
+  }
+  .btn:active {
+    transform: scale(0.985);
+  }
+
+  .btn-primary {
+    background-color: var(--accent);
+    color: var(--on-accent);
+  }
+  .btn-primary:hover {
+    background-color: var(--accent-hover);
+  }
+
+  .btn-secondary {
+    border: 1px solid var(--border-control);
+    color: var(--ink);
+    background-color: transparent;
+  }
+  .btn-secondary:hover {
+    border-color: var(--ink);
+    background-color: var(--paper-2);
+  }
+
+  .btn-quiet {
+    color: var(--accent-ink);
+    padding-inline: 0;
+    min-height: 2.25rem;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.32em;
+    text-decoration-color: var(--accent-line);
+  }
+  .btn-quiet:hover {
+    text-decoration-color: var(--accent-ink);
+  }
+
+  /* --------------------------------------------------------------------
+   * Reveal on scroll. Guarded so it never depends on an ancestor with
+   * overflow hidden: reveal targets are always direct children of a plain
+   * flow container.
+   * ------------------------------------------------------------------*/
+  .reveal {
+    opacity: 0;
+    transform: translate3d(0, 1.25rem, 0);
+    transition:
+      opacity 0.85s var(--ease-out-quint),
+      transform 0.85s var(--ease-out-quint);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .reveal[data-revealed='true'] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@layer utilities {
+  .z-below { z-index: var(--z-below); }
+  .z-base { z-index: var(--z-base); }
+  .z-raised { z-index: var(--z-raised); }
+  .z-header { z-index: var(--z-header); }
+  .z-menu { z-index: var(--z-menu); }
+  .z-overlay { z-index: var(--z-overlay); }
+  .z-cookie { z-index: var(--z-cookie); }
+  .z-curtain { z-index: var(--z-curtain); }
+  .z-skip { z-index: var(--z-skip); }
+
+  /* Off-screen without an absolute-position dependency, so it can never
+     create a horizontal overflow offender. */
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @layer base {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}

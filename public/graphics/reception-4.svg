@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="r4bg" x1="93.3%" y1="75%" x2="6.7%" y2="25%">
+      <stop offset="0%" stop-color="#f7fbfc"/><stop offset="100%" stop-color="#edf4f5"/>
+    </linearGradient>
+    <linearGradient id="r4bar" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#bed6da"/><stop offset="100%" stop-color="#e6f3f5"/>
+    </linearGradient>
+    <clipPath id="r4clip"><rect x="29" y="29" width="742" height="942"/></clipPath>
+  </defs>
+  <rect width="800" height="1000" fill="url(#r4bg)"/>
+  <g clip-path="url(#r4clip)">
+    <rect x="300" y="150" width="200" height="46" rx="23" fill="#226f7b" stroke="none" stroke-width="0"/>
+    <circle cx="290" cy="340" r="40" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="160" cy="340" r="40" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="510" cy="340" r="40" fill="#e6f3f5" stroke="#226f7b" stroke-width="2"/>
+    <circle cx="640" cy="340" r="40" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="290" cy="470" r="40" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="160" cy="470" r="40" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="510" cy="470" r="40" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="640" cy="470" r="40" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="290" cy="600" r="40" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="160" cy="600" r="40" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="510" cy="600" r="40" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="640" cy="600" r="40" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="290" cy="730" r="40" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="160" cy="730" r="40" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="510" cy="730" r="40" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="640" cy="730" r="40" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="290" cy="860" r="40" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="160" cy="860" r="40" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="510" cy="860" r="40" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="640" cy="860" r="40" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <line x1="400" y1="220" x2="400" y2="920" stroke="#226f7b" stroke-width="2"/>
+  </g>
+    <rect x="28.5" y="28.5" width="743" height="943" rx="0" fill="none" stroke="#cfd9db" stroke-width="1"/>
+</svg>

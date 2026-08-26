@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="r3bg" x1="93.3%" y1="75%" x2="6.7%" y2="25%">
+      <stop offset="0%" stop-color="#f7fbfc"/><stop offset="100%" stop-color="#edf4f5"/>
+    </linearGradient>
+    <linearGradient id="r3bar" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#bed6da"/><stop offset="100%" stop-color="#e6f3f5"/>
+    </linearGradient>
+    <clipPath id="r3clip"><rect x="29" y="29" width="742" height="942"/></clipPath>
+  </defs>
+  <rect width="800" height="1000" fill="url(#r3bg)"/>
+  <g clip-path="url(#r3clip)">
+    <rect x="180" y="800" width="440" height="46" rx="23" fill="url(#r3bar)" stroke="#226f7b" stroke-width="1.5"/>
+    <circle cx="138.5" cy="552.9" r="44" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="165.1" cy="487" r="44" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="207.9" cy="430.3" r="44" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="264" cy="386.7" r="44" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="329.6" cy="359.3" r="44" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="400" cy="350" r="44" fill="#e6f3f5" stroke="#226f7b" stroke-width="2"/>
+    <circle cx="470.4" cy="359.3" r="44" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="536" cy="386.7" r="44" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="592.1" cy="430.3" r="44" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="634.9" cy="487" r="44" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="661.5" cy="552.9" r="44" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <path d="M 138.5 552.9 A 270 270 0 0 1 661.5 552.9" fill="none" stroke="#cfd9db" stroke-width="1" stroke-linecap="butt"/>
+  </g>
+    <rect x="28.5" y="28.5" width="743" height="943" rx="0" fill="none" stroke="#cfd9db" stroke-width="1"/>
+</svg>

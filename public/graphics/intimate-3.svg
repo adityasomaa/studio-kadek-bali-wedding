@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="i3bg" x1="32.9%" y1="3%" x2="67.1%" y2="97%">
+      <stop offset="0%" stop-color="#f7fbfc"/><stop offset="100%" stop-color="#edf4f5"/>
+    </linearGradient>
+    <radialGradient id="i3soft" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#e6f3f5"/><stop offset="100%" stop-color="#f7fbfc"/>
+    </radialGradient>
+    <linearGradient id="i3mass" x1="14.6%" y1="14.6%" x2="85.4%" y2="85.4%">
+      <stop offset="0%" stop-color="#e6f3f5"/><stop offset="100%" stop-color="#bed6da"/>
+    </linearGradient>
+    <clipPath id="i3clip"><rect x="29" y="29" width="742" height="942"/></clipPath>
+  </defs>
+  <rect width="800" height="1000" fill="url(#i3bg)"/>
+  <g clip-path="url(#i3clip)">
+    <circle cx="400" cy="500" r="470" fill="none" stroke="#bed6da" stroke-width="1"/>
+    <circle cx="400" cy="500" r="380" fill="none" stroke="#bed6da" stroke-width="1"/>
+    <circle cx="400" cy="500" r="290" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="400" cy="500" r="200" fill="none" stroke="#226f7b" stroke-width="2"/>
+    <circle cx="400" cy="500" r="96" fill="url(#i3mass)" stroke="none" stroke-width="1"/>
+    <circle cx="400" cy="30" r="10" fill="#226f7b" stroke="none" stroke-width="1"/>
+  </g>
+    <rect x="28.5" y="28.5" width="743" height="943" rx="0" fill="none" stroke="#cfd9db" stroke-width="1"/>
+</svg>

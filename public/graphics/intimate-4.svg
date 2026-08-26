@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="i4bg" x1="32.9%" y1="3%" x2="67.1%" y2="97%">
+      <stop offset="0%" stop-color="#f7fbfc"/><stop offset="100%" stop-color="#edf4f5"/>
+    </linearGradient>
+    <radialGradient id="i4soft" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#e6f3f5"/><stop offset="100%" stop-color="#f7fbfc"/>
+    </radialGradient>
+    <linearGradient id="i4mass" x1="14.6%" y1="14.6%" x2="85.4%" y2="85.4%">
+      <stop offset="0%" stop-color="#e6f3f5"/><stop offset="100%" stop-color="#bed6da"/>
+    </linearGradient>
+    <clipPath id="i4clip"><rect x="29" y="29" width="742" height="942"/></clipPath>
+  </defs>
+  <rect width="800" height="1000" fill="url(#i4bg)"/>
+  <g clip-path="url(#i4clip)">
+    <circle cx="210" cy="800" r="250" fill="url(#i4soft)" stroke="none" stroke-width="1"/>
+    <circle cx="210" cy="800" r="250" fill="none" stroke="#226f7b" stroke-width="2"/>
+    <path d="M -23.3 580.9 A 320 320 0 0 1 443.3 580.9" fill="none" stroke="#84adb4" stroke-width="1" stroke-linecap="butt"/>
+    <rect x="620" y="150" width="54" height="480" rx="0" fill="url(#i4mass)" stroke="none" stroke-width="1"/>
+    <rect x="620" y="150" width="54" height="480" rx="0" fill="none" stroke="#226f7b" stroke-width="1"/>
+    <line x1="80" y1="150" x2="560" y2="150" stroke="#b2bfc1" stroke-width="1"/>
+  </g>
+    <rect x="28.5" y="28.5" width="743" height="943" rx="0" fill="none" stroke="#cfd9db" stroke-width="1"/>
+</svg>

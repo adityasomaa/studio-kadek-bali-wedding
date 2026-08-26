@@ -1,0 +1,1306 @@
+/* ============================================================================
+ * Component styles.
+ *
+ * Everything here is inside @layer components on purpose. Unlayered CSS beats
+ * every Tailwind utility regardless of source order, so a stray unlayered rule
+ * silently wins over a utility written next to it in the markup. Keeping this
+ * file layered means utilities still override it, which is what anyone editing
+ * the JSX will expect.
+ * ==========================================================================*/
+
+@layer components {
+  /* ------------------------------------------------------------------
+   * Layout primitives
+   * ----------------------------------------------------------------*/
+  .section-block {
+    padding-block: clamp(4.5rem, 10vw, 8.5rem);
+  }
+  .section-block-tight {
+    padding-block: clamp(3rem, 7vw, 5.5rem);
+  }
+  .surface-2 {
+    background-color: var(--paper-2);
+  }
+
+  .skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    transform: translateY(-250%);
+    background-color: var(--ink);
+    color: var(--paper);
+    padding: 0.7rem 1.1rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    transition: transform 0.25s var(--ease-out-quart);
+  }
+  .skip-link:focus-visible {
+    transform: translateY(0);
+  }
+
+  /* ------------------------------------------------------------------
+   * Header + navigation
+   * ----------------------------------------------------------------*/
+  /* Fixed rather than sticky.
+     Locking body scroll for the lightbox and the calendar means setting
+     overflow:hidden on <body>, which changes the scroll container and silently
+     kills position:sticky — the header would slide off screen the moment an
+     overlay opened. Fixed positioning is unaffected by the lock. The body
+     reserves the height, so nothing sits underneath it. */
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--paper);
+    border-bottom: 1px solid var(--line);
+  }
+  body {
+    padding-top: var(--header-h);
+  }
+
+  /* The wordmark absorbs all the shrink in the header row and truncates; the
+     controls on the right never shrink.
+     Without `flex: none` on the actions group, the global `* { min-width: 0 }`
+     lets that group collapse below its own min-content, and its fixed-size
+     children (locale switch, hamburger) spill past the viewport edge. A long
+     business name is all it takes to trigger it. */
+  .wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .header-actions {
+    flex: none;
+  }
+  .wordmark svg {
+    flex: none;
+  }
+  .wordmark-text {
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  @media (min-width: 30rem) {
+    .wordmark-text {
+      font-size: 1.125rem;
+    }
+  }
+
+  .nav-link {
+    position: relative;
+    display: inline-block;
+    font-size: 0.9375rem;
+    color: var(--ink-muted);
+    padding-block: 0.35rem;
+    transition: color 0.3s var(--ease-out-quart);
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background-color: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--ease-out-quint);
+  }
+  .nav-link:hover,
+  .nav-link[data-active='true'] {
+    color: var(--ink);
+  }
+  .nav-link:hover::after,
+  .nav-link[data-active='true']::after {
+    transform: scaleX(1);
+  }
+
+  .locale-switch {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--border-control);
+    border-radius: 999px;
+    padding: 2px;
+    flex: none;
+  }
+  .locale-option {
+    min-height: 2rem;
+    padding-inline: 0.65rem;
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--ink-muted);
+    transition:
+      background-color 0.3s var(--ease-out-quart),
+      color 0.3s var(--ease-out-quart);
+  }
+  .locale-option[data-active='true'] {
+    background-color: var(--ink);
+    color: var(--paper);
+  }
+
+  .menu-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-right: -0.5rem;
+    flex: none;
+  }
+  .menu-bars {
+    display: block;
+    width: 22px;
+    height: 12px;
+    position: relative;
+  }
+  .menu-bars span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background-color: var(--ink);
+    transition: transform 0.42s var(--ease-out-quint);
+  }
+  .menu-bars span:first-child {
+    top: 0;
+  }
+  .menu-bars span:last-child {
+    bottom: 0;
+  }
+  .menu-bars[data-open='true'] span:first-child {
+    transform: translateY(5.25px) rotate(45deg);
+  }
+  .menu-bars[data-open='true'] span:last-child {
+    transform: translateY(-5.25px) rotate(-45deg);
+  }
+
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    top: var(--header-h);
+    background-color: var(--paper);
+    opacity: 0;
+    visibility: hidden;
+    transform: translate3d(0, -1.25rem, 0);
+    transition:
+      opacity 0.4s var(--ease-out-quart),
+      transform 0.5s var(--ease-out-quint),
+      visibility 0s linear 0.5s;
+  }
+  .mobile-menu[data-open='true'] {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition-delay: 0s;
+  }
+  @media (min-width: 64rem) {
+    .mobile-menu {
+      display: none;
+    }
+  }
+
+  .mobile-link {
+    display: flex;
+    align-items: baseline;
+    gap: 0.85rem;
+    padding-block: 0.9rem;
+    border-bottom: 1px solid var(--line);
+    font-size: 1.6rem;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    opacity: 0;
+    transform: translate3d(0, 0.75rem, 0);
+    transition:
+      opacity 0.45s var(--ease-out-quart),
+      transform 0.55s var(--ease-out-quint);
+  }
+  .mobile-menu[data-open='true'] .mobile-link {
+    opacity: 1;
+    transform: none;
+  }
+  .mobile-link[data-active='true'] {
+    color: var(--accent-ink);
+  }
+  .mobile-link-index {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    color: var(--ink-faint);
+  }
+
+  /* ------------------------------------------------------------------
+   * Page transition curtain + intro loader
+   * ----------------------------------------------------------------*/
+  .curtain {
+    position: fixed;
+    inset: 0;
+    background-color: var(--paper-2);
+    display: grid;
+    place-items: center;
+    transform: translate3d(0, 100%, 0);
+    visibility: hidden;
+    will-change: transform;
+  }
+  .curtain[data-phase='closing'] {
+    visibility: visible;
+    transform: translate3d(0, 0, 0);
+    transition: transform 620ms var(--ease-out-quint);
+  }
+  .curtain[data-phase='covered'] {
+    visibility: visible;
+    transform: translate3d(0, 0, 0);
+  }
+  .curtain[data-phase='opening'] {
+    visibility: visible;
+    transform: translate3d(0, -100%, 0);
+    transition: transform 760ms var(--ease-out-quint);
+  }
+
+  .curtain-inner {
+    padding-inline: var(--shell-x);
+    text-align: center;
+  }
+  .curtain-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+  }
+  /* Phone and tablet: the wordmark breaks into its configured parts, one per
+     line, and each part stays whole. Desktop: the parts sit on one line.
+     The break point comes from `shortName` in the client config, not from
+     wherever the browser happens to run out of room, which is what stranded
+     "Wedding" on the first line and split "Wedding Organizer" in two. */
+  .curtain-wordmark {
+    display: block;
+    font-size: clamp(1.5rem, 7.2vw, 2.5rem);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    max-inline-size: none;
+  }
+  .curtain-line {
+    display: block;
+    white-space: nowrap;
+  }
+
+  @media (min-width: 64rem) {
+    .curtain-wordmark {
+      font-size: clamp(2rem, 4.4vw, 3rem);
+      white-space: nowrap;
+    }
+    .curtain-line {
+      display: inline-block;
+    }
+    /* Restores the gap the block layout swallowed. A margin rather than a
+       non-breaking-space escape: the escape survives authoring but not the
+       CSS minifier, which turned it into a visible tofu glyph. */
+    .curtain-line + .curtain-line {
+      margin-left: 0.22em;
+    }
+  }
+  .curtain-char {
+    display: inline-block;
+    opacity: 0;
+    transform: translate3d(0, 0.55em, 0);
+    animation: curtain-char-in 700ms var(--ease-out-quint) forwards;
+  }
+  .curtain-place {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    opacity: 0;
+    animation: curtain-fade-in 700ms var(--ease-out-quart) 560ms forwards;
+  }
+  .curtain-rule {
+    display: block;
+    width: min(15rem, 58vw);
+    height: 1px;
+    background-color: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: curtain-rule-in 900ms var(--ease-out-quint) 640ms forwards;
+  }
+  .curtain-mark {
+    opacity: 0;
+    animation: curtain-fade-in 380ms var(--ease-out-quart) 90ms forwards;
+  }
+
+  @keyframes curtain-char-in {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes curtain-fade-in {
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes curtain-rule-in {
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  /* ------------------------------------------------------------------
+   * Hero. Header + hero together are exactly one small-viewport screen.
+   * ----------------------------------------------------------------*/
+  .hero {
+    height: calc(100svh - var(--header-h));
+    min-height: 32rem;
+    display: flex;
+    align-items: stretch;
+  }
+  .hero-inner {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    width: 100%;
+    padding-block: clamp(1.25rem, 4vh, 2.5rem);
+    gap: clamp(1rem, 3vh, 2rem);
+  }
+  .hero-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+  }
+  .hero-place {
+    font-size: 0.8125rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .hero-art {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.125rem;
+    height: clamp(6.5rem, 20svh, 11rem);
+    border: 1px solid var(--line);
+  }
+  .hero-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    display: block;
+  }
+
+  @media (min-width: 64rem) {
+    .hero-inner {
+      grid-template-rows: none;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.8fr);
+      align-items: stretch;
+      gap: clamp(2rem, 5vw, 5rem);
+      padding-block: clamp(2rem, 5vh, 3.5rem);
+    }
+    .hero-art {
+      height: 100%;
+      border-radius: 1.5rem;
+    }
+    .hero-art img {
+      object-position: center;
+    }
+  }
+
+  .hero-fade {
+    opacity: 0;
+    transform: translate3d(0, 0.85rem, 0);
+    animation: hero-in 800ms var(--ease-out-quint) forwards;
+  }
+  @keyframes hero-in {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* ------------------------------------------------------------------
+   * Gallery
+   * ----------------------------------------------------------------*/
+  .gallery-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 2.5rem;
+  }
+  .filter-pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.375rem;
+    padding-inline: 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--border-control);
+    font-size: 0.875rem;
+    color: var(--ink-muted);
+    transition:
+      background-color 0.3s var(--ease-out-quart),
+      border-color 0.3s var(--ease-out-quart),
+      color 0.3s var(--ease-out-quart);
+  }
+  .filter-pill:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+  .filter-pill[data-active='true'] {
+    background-color: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+    list-style: none;
+  }
+  @media (min-width: 48rem) {
+    .gallery-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.75rem;
+      margin-top: 3rem;
+    }
+  }
+  @media (min-width: 80rem) {
+    .gallery-grid {
+      gap: 2.25rem;
+    }
+  }
+  .gallery-grid-compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  @media (min-width: 64rem) {
+    .gallery-grid-compact {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .gallery-tile {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    max-block-size: 24rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.875rem;
+    border: 1px solid var(--line);
+    background-color: var(--paper-2);
+    transition:
+      border-color 0.4s var(--ease-out-quart),
+      transform 0.5s var(--ease-out-quint);
+  }
+  .gallery-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.4s var(--ease-out-quart);
+  }
+  .gallery-tile:hover {
+    border-color: var(--accent);
+  }
+  .gallery-tile:hover img {
+    opacity: 0.9;
+  }
+  .gallery-caption {
+    position: absolute;
+    left: 0.625rem;
+    bottom: 0.625rem;
+    max-width: calc(100% - 1.25rem);
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    background-color: var(--paper);
+    border: 1px solid var(--line);
+    font-size: 0.6875rem;
+    letter-spacing: 0.03em;
+    color: var(--ink-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ------------------------------------------------------------------
+   * Lightbox
+   * ----------------------------------------------------------------*/
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: clamp(0.75rem, 4vw, 2rem);
+  }
+  /* The dim uses element opacity rather than an alpha channel inside the
+     colour. A translucent oklch()/color-mix() value did not composite
+     reliably in testing, and a scrim that silently renders as nothing is the
+     worst possible failure for a modal. Opacity on the element always works. */
+  .lightbox-scrim {
+    position: absolute;
+    inset: 0;
+    background-color: var(--ink);
+    opacity: 0;
+    animation: scrim-in 240ms var(--ease-out-quart) forwards;
+    cursor: default;
+  }
+  @keyframes scrim-in {
+    to {
+      opacity: 0.62;
+    }
+  }
+  .lightbox-dialog {
+    position: relative;
+    width: min(100%, 30rem);
+    max-height: 92svh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background-color: var(--paper);
+    border-radius: 1rem;
+    border: 1px solid var(--line);
+    padding: 0.875rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    opacity: 0;
+    transform: translate3d(0, 1rem, 0);
+    animation: lightbox-in 380ms var(--ease-out-quint) 60ms forwards;
+  }
+  @keyframes lightbox-in {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .lightbox-bar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .lightbox-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 999px;
+    border: 1px solid var(--border-control);
+    color: var(--ink);
+    flex: none;
+  }
+  .lightbox-figure {
+    margin: 0;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background-color: var(--paper-2);
+  }
+  .lightbox-figure img {
+    width: 100%;
+    max-height: 62svh;
+    object-fit: contain;
+    display: block;
+  }
+  .lightbox-nav {
+    display: flex;
+    gap: 0.625rem;
+  }
+  .lightbox-nav .btn {
+    flex: 1;
+  }
+
+  /* ------------------------------------------------------------------
+   * Packages
+   * ----------------------------------------------------------------*/
+  .package-rows {
+    list-style: none;
+    margin-top: 3rem;
+    border-top: 1px solid var(--line);
+  }
+  .package-row {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    gap: 1rem;
+    padding-block: 1.75rem;
+    border-bottom: 1px solid var(--line);
+    transition: background-color 0.4s var(--ease-out-quart);
+  }
+  .package-row:hover {
+    background-color: var(--paper-2);
+  }
+  .package-row-index {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    color: var(--accent-ink);
+    padding-top: 0.45rem;
+  }
+  .package-row-mark {
+    display: none;
+  }
+  @media (min-width: 64rem) {
+    .package-row {
+      grid-template-columns: auto minmax(0, 1fr) 13rem;
+      gap: 2rem;
+      padding-block: 2.25rem;
+      padding-inline: 1rem;
+      margin-inline: -1rem;
+    }
+    .package-row-mark {
+      display: block;
+      align-self: center;
+    }
+    .package-row-mark img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 0.5rem;
+      border: 1px solid var(--line);
+    }
+  }
+
+  .package-jump ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin-bottom: 3rem;
+  }
+
+  .package-panel {
+    display: grid;
+    gap: 2rem;
+    padding-block: clamp(2.5rem, 6vw, 4rem);
+    border-top: 1px solid var(--line);
+    scroll-margin-top: calc(var(--header-h) + 1.5rem);
+  }
+  .package-panel-art {
+    order: -1;
+    border-radius: 0.875rem;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    max-width: 20rem;
+  }
+  .package-panel-art img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .package-lists {
+    display: grid;
+    gap: 2rem;
+  }
+  @media (min-width: 48rem) {
+    .package-lists {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2.5rem;
+    }
+  }
+  @media (min-width: 64rem) {
+    .package-panel {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+      column-gap: 4rem;
+      row-gap: 2.5rem;
+      align-items: start;
+    }
+    .package-panel-head {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .package-panel-art {
+      grid-column: 1;
+      grid-row: 2;
+      order: 0;
+      align-self: start;
+    }
+    .package-lists {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+    }
+    .package-panel-cta {
+      grid-column: 1 / -1;
+    }
+  }
+  .package-list-title {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding-bottom: 0.875rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .package-list {
+    list-style: none;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .package-list li {
+    position: relative;
+    padding-left: 1.4rem;
+    color: var(--ink-muted);
+    line-height: 1.55;
+  }
+  .package-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 0.5rem;
+    height: 1px;
+    background-color: var(--accent);
+  }
+  .package-list-boundary li::before {
+    background-color: var(--line-strong);
+  }
+  .package-panel-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  /* ------------------------------------------------------------------
+   * Process
+   * ----------------------------------------------------------------*/
+  .process-list {
+    list-style: none;
+    margin-top: 3rem;
+  }
+  .process-step {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 1rem;
+    padding-block: 1.75rem;
+    border-top: 1px solid var(--line);
+    align-items: start;
+  }
+  @media (min-width: 48rem) {
+    .process-step {
+      grid-template-columns: 5rem minmax(0, 1fr);
+      gap: 2rem;
+      padding-block: 2.5rem;
+    }
+  }
+  @media (min-width: 64rem) {
+    .process-step {
+      grid-template-columns: 7rem minmax(0, 1fr) minmax(0, 0.68fr);
+      column-gap: 3rem;
+    }
+    .process-body {
+      grid-column: 2;
+    }
+  }
+  .process-number {
+    font-size: 0.8125rem;
+    letter-spacing: 0.12em;
+    color: var(--accent-ink);
+    padding-top: 0.4rem;
+  }
+  .process-output {
+    /* Full width until the third column exists. Without this the panel lands
+       in the auto-sized first column, that column grows to fit its text, and
+       the body column is squeezed to about 60px: the step heading then wraps
+       to four lines on a phone. */
+    grid-column: 1 / -1;
+    margin-top: 1.25rem;
+    padding: 0.875rem 1rem;
+    border-radius: 0.625rem;
+    background-color: var(--accent-soft);
+    font-size: 0.9375rem;
+    color: var(--ink);
+  }
+  @media (min-width: 64rem) {
+    .process-output {
+      grid-column: 3;
+      grid-row: 1;
+      margin-top: 0;
+      align-self: start;
+    }
+  }
+  .process-output-label {
+    display: block;
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin-bottom: 0.3rem;
+  }
+
+  .vendor-grid {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+    margin-top: 2.5rem;
+  }
+  .vendor-chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.5rem;
+    padding-inline: 1.1rem;
+    border-radius: 999px;
+    background-color: var(--paper);
+    border: 1px solid var(--line-strong);
+    font-size: 0.9375rem;
+    color: var(--ink);
+  }
+
+  /* ------------------------------------------------------------------
+   * Forms
+   * ----------------------------------------------------------------*/
+  .consult-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    margin-top: 2.5rem;
+  }
+  .form-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+  @media (min-width: 48rem) {
+    .form-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.75rem 2rem;
+    }
+    .field-wide {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+  .field-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .field-optional {
+    font-weight: 400;
+    color: var(--ink-faint);
+  }
+  .field-error {
+    font-size: 0.8125rem;
+    color: var(--accent-ink);
+  }
+
+  .control {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.75rem 0.95rem;
+    border-radius: 0.625rem;
+    border: 1px solid var(--border-control);
+    background-color: var(--paper);
+    color: var(--ink);
+    font-size: 1rem;
+    font-family: inherit;
+    transition:
+      border-color 0.3s var(--ease-out-quart),
+      background-color 0.3s var(--ease-out-quart);
+  }
+  .control::placeholder {
+    color: var(--ink-faint);
+  }
+  .control:hover:not(:disabled) {
+    border-color: var(--ink);
+  }
+  .control[data-invalid='true'] {
+    border-color: var(--accent);
+    background-color: var(--accent-soft);
+  }
+  .control:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+  .control-area {
+    min-height: 8rem;
+    resize: vertical;
+    line-height: 1.55;
+  }
+
+  .select-trigger,
+  .date-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    text-align: left;
+  }
+  .select-trigger > span:first-child,
+  .date-trigger > span:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .select-trigger[data-placeholder='true'] > span:first-child,
+  .date-trigger[data-placeholder='true'] > span:first-child {
+    color: var(--ink-faint);
+  }
+  .select-trigger svg {
+    flex: none;
+    color: var(--ink-muted);
+    transition: transform 0.32s var(--ease-out-quart);
+  }
+  .select-trigger svg[data-open='true'] {
+    transform: rotate(180deg);
+  }
+  .date-trigger svg {
+    flex: none;
+    color: var(--ink-muted);
+  }
+
+  .checkbox-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.9375rem;
+    color: var(--ink-muted);
+    cursor: pointer;
+    padding-block: 0.3rem;
+  }
+  .checkbox-row input {
+    width: 1.125rem;
+    height: 1.125rem;
+    accent-color: var(--accent);
+    flex: none;
+  }
+
+  .form-summary {
+    display: none;
+  }
+  .form-summary[data-state='error'],
+  .form-summary[data-state='success'] {
+    display: block;
+    padding: 1.1rem 1.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--accent-line);
+    background-color: var(--accent-soft);
+  }
+  .form-summary-title {
+    font-weight: 500;
+  }
+
+  .form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  /* Hidden the same way as .visually-hidden: clipped to one pixel, never
+     offset by a large negative value that would create horizontal overflow. */
+  .honeypot {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* ------------------------------------------------------------------
+   * Floating layers: listbox + calendar, both portalled to <body>
+   * ----------------------------------------------------------------*/
+  .floating {
+    position: fixed;
+    background-color: var(--paper);
+    border: 1px solid var(--line-strong);
+    border-radius: 0.75rem;
+    box-shadow: 0 18px 44px -22px var(--shadow-strong);
+    overflow: hidden;
+    opacity: 0;
+    transform: translate3d(0, -0.4rem, 0);
+    animation: floating-in 220ms var(--ease-out-quart) forwards;
+  }
+  .floating[data-flipped='true'] {
+    transform: translate3d(0, 0.4rem, 0);
+  }
+  @keyframes floating-in {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .listbox {
+    list-style: none;
+    max-height: min(18rem, 50svh);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 0.3rem;
+  }
+  .listbox-option {
+    padding: 0.65rem 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.9375rem;
+    color: var(--ink-muted);
+    cursor: pointer;
+  }
+  .listbox-option[data-active='true'] {
+    background-color: var(--paper-2);
+    color: var(--ink);
+  }
+  .listbox-option[aria-selected='true'] {
+    color: var(--accent-ink);
+    font-weight: 500;
+  }
+
+  .calendar-layer {
+    max-width: calc(100vw - 1.5rem);
+  }
+  .calendar {
+    padding: 0.875rem;
+  }
+  .calendar-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding-bottom: 0.75rem;
+  }
+  .calendar-title {
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+  .calendar-nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.125rem;
+    height: 2.125rem;
+    border-radius: 999px;
+    border: 1px solid var(--border-control);
+    color: var(--ink);
+    flex: none;
+  }
+  .calendar-nav:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+  .calendar-weekdays,
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 2px;
+  }
+  .calendar-weekdays span {
+    text-align: center;
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    padding-block: 0.35rem;
+  }
+  .calendar-cell {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--ink);
+    min-height: 2.25rem;
+  }
+  .calendar-cell:hover:not(:disabled) {
+    background-color: var(--paper-2);
+  }
+  .calendar-cell:disabled {
+    color: var(--ink-faint);
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  .calendar-cell[data-today='true'] {
+    box-shadow: inset 0 0 0 1px var(--accent-line);
+  }
+  .calendar-cell[data-selected='true'] {
+    background-color: var(--accent);
+    color: var(--on-accent);
+  }
+  .calendar-pad {
+    pointer-events: none;
+  }
+
+  /* ------------------------------------------------------------------
+   * Cookie banner
+   * ----------------------------------------------------------------*/
+  .cookie-wrap {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    padding: 0.75rem;
+    pointer-events: none;
+  }
+  @media (min-width: 48rem) {
+    .cookie-wrap {
+      /* Right-hand side on wide screens. The hero copy and its buttons are
+         left-aligned, and a bottom-left card sat straight on top of them. */
+      justify-content: flex-end;
+      padding: 1.25rem;
+    }
+  }
+  .cookie-card {
+    pointer-events: auto;
+    width: min(100%, 30rem);
+    background-color: var(--paper);
+    border: 1px solid var(--line-strong);
+    border-radius: 0.875rem;
+    box-shadow: 0 20px 48px -26px var(--shadow-strong);
+    padding: 1.1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    animation: cookie-in 420ms var(--ease-out-quint) 700ms both;
+  }
+  @keyframes cookie-in {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 1rem, 0);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .cookie-actions {
+    display: flex;
+    gap: 0.625rem;
+  }
+  .cookie-actions .btn {
+    flex: 1;
+  }
+  @media (min-width: 30rem) {
+    .cookie-actions .btn {
+      flex: 0 1 auto;
+    }
+  }
+
+  /* ------------------------------------------------------------------
+   * Footer
+   * ----------------------------------------------------------------*/
+  .footer {
+    background-color: var(--paper-2);
+    border-top: 1px solid var(--line);
+  }
+  .footer-cta {
+    padding-block: clamp(3.5rem, 9vw, 6.5rem);
+    max-width: 46rem;
+  }
+  .footer-grid {
+    display: grid;
+    gap: 2.5rem;
+    padding-block: clamp(2.5rem, 6vw, 4rem);
+  }
+  @media (min-width: 48rem) {
+    .footer-grid {
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr);
+      gap: 3rem;
+    }
+  }
+  .footer-link {
+    font-size: 0.9375rem;
+    color: var(--ink-muted);
+    transition: color 0.3s var(--ease-out-quart);
+  }
+  .footer-link:hover {
+    color: var(--accent-ink);
+  }
+  .footer-base {
+    border-top: 1px solid var(--line);
+    padding-block: 1.75rem;
+  }
+
+  /* ------------------------------------------------------------------
+   * Legal + contact detail
+   * ----------------------------------------------------------------*/
+  .legal-body {
+    margin-top: 3.5rem;
+    max-width: 44rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  .legal-section h2 {
+    font-size: 1.125rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .legal-section p {
+    margin-top: 1rem;
+    color: var(--ink-muted);
+    line-height: 1.7;
+  }
+  .legal-section ul {
+    margin-top: 1rem;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .legal-section li {
+    position: relative;
+    padding-left: 1.4rem;
+    color: var(--ink-muted);
+  }
+  .legal-section li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.66em;
+    width: 0.5rem;
+    height: 1px;
+    background-color: var(--accent);
+  }
+
+  .detail-list {
+    list-style: none;
+    margin-top: 2.5rem;
+    border-top: 1px solid var(--line);
+    max-width: 42rem;
+  }
+  .detail-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.3rem;
+    padding-block: 1.1rem;
+    border-bottom: 1px solid var(--line);
+  }
+  @media (min-width: 40rem) {
+    .detail-row {
+      grid-template-columns: 10rem minmax(0, 1fr);
+      gap: 1.5rem;
+      align-items: baseline;
+    }
+  }
+  .detail-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .detail-value {
+    color: var(--ink);
+    overflow-wrap: anywhere;
+  }
+  .detail-value-pending {
+    color: var(--ink-muted);
+  }
+}

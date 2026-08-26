@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="r1bg" x1="93.3%" y1="75%" x2="6.7%" y2="25%">
+      <stop offset="0%" stop-color="#f7fbfc"/><stop offset="100%" stop-color="#edf4f5"/>
+    </linearGradient>
+    <linearGradient id="r1bar" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#bed6da"/><stop offset="100%" stop-color="#e6f3f5"/>
+    </linearGradient>
+    <clipPath id="r1clip"><rect x="29" y="29" width="742" height="942"/></clipPath>
+  </defs>
+  <rect width="800" height="1000" fill="url(#r1bg)"/>
+  <g clip-path="url(#r1clip)">
+    <rect x="230" y="170" width="340" height="46" rx="23" fill="url(#r1bar)" stroke="#226f7b" stroke-width="1.5"/>
+    <circle cx="160" cy="380" r="46" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="320" cy="380" r="46" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="480" cy="380" r="46" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="640" cy="380" r="46" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="160" cy="535" r="46" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="320" cy="535" r="46" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="480" cy="535" r="46" fill="#e6f3f5" stroke="#226f7b" stroke-width="2"/>
+    <circle cx="640" cy="535" r="46" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="160" cy="690" r="46" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="320" cy="690" r="46" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="480" cy="690" r="46" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="640" cy="690" r="46" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="160" cy="845" r="46" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="320" cy="845" r="46" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="480" cy="845" r="46" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="640" cy="845" r="46" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <line x1="400" y1="216" x2="400" y2="900" stroke="#cfd9db" stroke-width="1"/>
+  </g>
+    <rect x="28.5" y="28.5" width="743" height="943" rx="0" fill="none" stroke="#cfd9db" stroke-width="1"/>
+</svg>

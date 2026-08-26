@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="t5bg" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#edf4f5"/><stop offset="100%" stop-color="#f7fbfc"/>
+    </linearGradient>
+    <linearGradient id="t5mass" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#e6f3f5"/><stop offset="100%" stop-color="#bed6da"/>
+    </linearGradient>
+    <clipPath id="t5clip"><rect x="29" y="29" width="742" height="942"/></clipPath>
+  </defs>
+  <rect width="800" height="1000" fill="url(#t5bg)"/>
+  <g clip-path="url(#t5clip)">
+    <line x1="400" y1="60" x2="400" y2="940" stroke="#cfd9db" stroke-width="1"/>
+    <path d="M 210 760 L 400 674 L 590 760" fill="none" stroke="#226f7b" stroke-width="2.5" stroke-linecap="butt"/>
+    <path d="M 227 668 L 400 582 L 573 668" fill="none" stroke="#84adb4" stroke-width="1" stroke-linecap="butt"/>
+    <path d="M 244 576 L 400 490 L 556 576" fill="none" stroke="#226f7b" stroke-width="2.5" stroke-linecap="butt"/>
+    <path d="M 261 484 L 400 398 L 539 484" fill="none" stroke="#84adb4" stroke-width="1" stroke-linecap="butt"/>
+    <path d="M 278 392 L 400 306 L 522 392" fill="none" stroke="#226f7b" stroke-width="2.5" stroke-linecap="butt"/>
+    <path d="M 295 300 L 400 214 L 505 300" fill="none" stroke="#84adb4" stroke-width="1" stroke-linecap="butt"/>
+    <line x1="80" y1="800" x2="720" y2="800" stroke="#142023" stroke-width="1.5"/>
+  </g>
+    <rect x="28.5" y="28.5" width="743" height="943" rx="0" fill="none" stroke="#cfd9db" stroke-width="1"/>
+</svg>

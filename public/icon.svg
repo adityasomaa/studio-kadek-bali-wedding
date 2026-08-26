@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>Studio Kadek Bali Wedding</title>
+  <g fill="none" stroke="#226f7b" stroke-width="6" stroke-linecap="round">
+    <path d="M 24 10 A 22 22 0 0 0 24 54"/>
+    <path d="M 40 10 A 22 22 0 0 1 40 54"/>
+  </g>
+  <circle cx="32" cy="32" r="6" fill="#005b67"/>
+</svg>

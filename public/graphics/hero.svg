@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" width="900" height="1200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="hbg" x1="28.9%" y1="4.7%" x2="71.1%" y2="95.3%">
+      <stop offset="0%" stop-color="#f7fbfc"/><stop offset="100%" stop-color="#e6f3f5"/>
+    </linearGradient>
+    <linearGradient id="hmass" x1="14.6%" y1="14.6%" x2="85.4%" y2="85.4%">
+      <stop offset="0%" stop-color="#e6f3f5"/><stop offset="100%" stop-color="#bed6da"/>
+    </linearGradient>
+    <clipPath id="hclip"><rect x="0" y="0" width="900" height="1200"/></clipPath>
+  </defs>
+  <rect width="900" height="1200" fill="url(#hbg)"/>
+  <g clip-path="url(#hclip)">
+    <path d="M 450 620 L 450 190 A 430 430 0 0 1 880 620 Z" fill="url(#hmass)" stroke="none" stroke-width="1" stroke-linecap="butt"/>
+    <circle cx="450" cy="620" r="430" fill="none" stroke="#226f7b" stroke-width="2"/>
+    <circle cx="450" cy="620" r="330" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="450" cy="620" r="230" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="450" cy="620" r="130" fill="#f7fbfc" stroke="#226f7b" stroke-width="2"/>
+    <circle cx="450" cy="620" r="44" fill="#226f7b" stroke="none" stroke-width="1"/>
+    <path d="M 0 1050 Q 450 150 900 880" fill="none" stroke="#226f7b" stroke-width="2" stroke-linecap="butt"/>
+    <path d="M 0 870 Q 450 290 900 1050" fill="none" stroke="#84adb4" stroke-width="1" stroke-linecap="butt"/>
+    <line x1="0" y1="620" x2="900" y2="620" stroke="#cfd9db" stroke-width="1"/>
+    <circle cx="450" cy="190" r="12" fill="#226f7b" stroke="none" stroke-width="1"/>
+  </g>
+</svg>

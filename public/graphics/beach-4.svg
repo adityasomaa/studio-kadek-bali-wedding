@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="b4sky" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#e6f3f5"/><stop offset="100%" stop-color="#f7fbfc"/>
+    </linearGradient>
+    <linearGradient id="b4sea" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#edf4f5"/><stop offset="100%" stop-color="#dfeaec"/>
+    </linearGradient>
+    <linearGradient id="b4disc" x1="32.9%" y1="3%" x2="67.1%" y2="97%">
+      <stop offset="0%" stop-color="#bed6da"/><stop offset="100%" stop-color="#e6f3f5"/>
+    </linearGradient>
+    <clipPath id="b4clip"><rect x="29" y="29" width="742" height="942"/></clipPath>
+    <clipPath id="b4sky-c"><rect x="29" y="29" width="742" height="571"/></clipPath>
+    <clipPath id="b4sea-c"><rect x="29" y="600" width="742" height="371"/></clipPath>
+  </defs>
+  <rect width="800" height="1000" fill="url(#b4sky)"/>
+  <g clip-path="url(#b4sea-c)">
+    <rect x="0" y="600" width="800" height="400" rx="0" fill="url(#b4sea)" stroke="none" stroke-width="1"/>
+  </g>
+  <g clip-path="url(#b4clip)">
+    <circle cx="620" cy="665" r="130" fill="url(#b4disc)" stroke="none" stroke-width="1"/>
+    <circle cx="620" cy="665" r="130" fill="none" stroke="#226f7b" stroke-width="2"/>
+    <rect x="70" y="410" width="40" height="190" rx="0" fill="#226f7b" stroke="none" stroke-width="1"/>
+    <line x1="29" y1="600" x2="771" y2="600" stroke="#142023" stroke-width="1.5"/>
+    <line x1="260" y1="634" x2="730" y2="634" stroke="#84adb4" stroke-width="1"/>
+    <line x1="141.3" y1="680" x2="726" y2="680" stroke="#84adb4" stroke-width="1"/>
+    <line x1="196.7" y1="726" x2="722" y2="726" stroke="#84adb4" stroke-width="1"/>
+    <line x1="112.8" y1="772" x2="670" y2="772" stroke="#84adb4" stroke-width="1"/>
+    <line x1="133.3" y1="818" x2="714" y2="818" stroke="#226f7b" stroke-width="2.5"/>
+    <line x1="84.3" y1="864" x2="710" y2="864" stroke="#84adb4" stroke-width="1"/>
+    <line x1="70" y1="910" x2="610" y2="910" stroke="#84adb4" stroke-width="1"/>
+  </g>
+    <rect x="28.5" y="28.5" width="743" height="943" rx="0" fill="none" stroke="#cfd9db" stroke-width="1"/>
+</svg>

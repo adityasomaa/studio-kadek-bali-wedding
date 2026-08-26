@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="r2bg" x1="93.3%" y1="75%" x2="6.7%" y2="25%">
+      <stop offset="0%" stop-color="#f7fbfc"/><stop offset="100%" stop-color="#edf4f5"/>
+    </linearGradient>
+    <linearGradient id="r2bar" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#bed6da"/><stop offset="100%" stop-color="#e6f3f5"/>
+    </linearGradient>
+    <clipPath id="r2clip"><rect x="29" y="29" width="742" height="942"/></clipPath>
+  </defs>
+  <rect width="800" height="1000" fill="url(#r2bg)"/>
+  <g clip-path="url(#r2clip)">
+    <circle cx="400" cy="520" r="250" fill="none" stroke="#cfd9db" stroke-width="1"/>
+    <circle cx="400" cy="270" r="52" fill="#e6f3f5" stroke="#226f7b" stroke-width="2"/>
+    <circle cx="560.7" cy="328.5" r="52" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="646.2" cy="476.6" r="52" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="616.5" cy="645" r="52" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="485.5" cy="754.9" r="52" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="314.5" cy="754.9" r="52" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="183.5" cy="645" r="52" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="153.8" cy="476.6" r="52" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="239.3" cy="328.5" r="52" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <circle cx="400" cy="520" r="84" fill="url(#r2bar)" stroke="#226f7b" stroke-width="2"/>
+    <rect x="230" y="880" width="340" height="44" rx="22" fill="#226f7b" stroke="none" stroke-width="0"/>
+  </g>
+    <rect x="28.5" y="28.5" width="743" height="943" rx="0" fill="none" stroke="#cfd9db" stroke-width="1"/>
+</svg>

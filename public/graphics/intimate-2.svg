@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="i2bg" x1="32.9%" y1="3%" x2="67.1%" y2="97%">
+      <stop offset="0%" stop-color="#f7fbfc"/><stop offset="100%" stop-color="#edf4f5"/>
+    </linearGradient>
+    <radialGradient id="i2soft" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#e6f3f5"/><stop offset="100%" stop-color="#f7fbfc"/>
+    </radialGradient>
+    <linearGradient id="i2mass" x1="14.6%" y1="14.6%" x2="85.4%" y2="85.4%">
+      <stop offset="0%" stop-color="#e6f3f5"/><stop offset="100%" stop-color="#bed6da"/>
+    </linearGradient>
+    <clipPath id="i2clip"><rect x="29" y="29" width="742" height="942"/></clipPath>
+  </defs>
+  <rect width="800" height="1000" fill="url(#i2bg)"/>
+  <g clip-path="url(#i2clip)">
+    <path d="M 400 315 A 210 210 0 0 1 400 725 A 210 210 0 0 1 400 315 Z" fill="none" stroke="none" stroke-width="1" stroke-linecap="butt"/>
+    <circle cx="270" cy="520" r="210" fill="none" stroke="#226f7b" stroke-width="2"/>
+    <circle cx="530" cy="520" r="210" fill="none" stroke="#226f7b" stroke-width="2"/>
+    <path d="M 400 355.1 A 210 210 0 0 1 400 684.9 A 210 210 0 0 1 400 355.1 Z" fill="url(#i2soft)" stroke="none" stroke-width="1" stroke-linecap="butt"/>
+    <line x1="400" y1="130" x2="400" y2="250" stroke="#b2bfc1" stroke-width="1"/>
+    <line x1="400" y1="790" x2="400" y2="900" stroke="#b2bfc1" stroke-width="1"/>
+  </g>
+    <rect x="28.5" y="28.5" width="743" height="943" rx="0" fill="none" stroke="#cfd9db" stroke-width="1"/>
+</svg>

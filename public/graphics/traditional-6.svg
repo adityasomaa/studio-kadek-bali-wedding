@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="t6bg" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#edf4f5"/><stop offset="100%" stop-color="#f7fbfc"/>
+    </linearGradient>
+    <linearGradient id="t6mass" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#e6f3f5"/><stop offset="100%" stop-color="#bed6da"/>
+    </linearGradient>
+    <clipPath id="t6clip"><rect x="29" y="29" width="742" height="942"/></clipPath>
+  </defs>
+  <rect width="800" height="1000" fill="url(#t6bg)"/>
+  <g clip-path="url(#t6clip)">
+    <line x1="400" y1="60" x2="400" y2="940" stroke="#cfd9db" stroke-width="1"/>
+    <path d="M 190 800 L 190 430 A 210 210 0 0 1 610 430 L 610 800 Z" fill="url(#t6mass)" stroke="#226f7b" stroke-width="2" stroke-linecap="butt"/>
+    <circle cx="400" cy="470" r="108" fill="#f7fbfc" stroke="#226f7b" stroke-width="2"/>
+    <circle cx="400" cy="470" r="52" fill="#226f7b" stroke="none" stroke-width="1"/>
+    <rect x="130" y="800" width="540" height="42" rx="0" fill="#f7fbfc" stroke="#226f7b" stroke-width="1.5"/>
+    <line x1="80" y1="800" x2="720" y2="800" stroke="#142023" stroke-width="1.5"/>
+  </g>
+    <rect x="28.5" y="28.5" width="743" height="943" rx="0" fill="none" stroke="#cfd9db" stroke-width="1"/>
+</svg>

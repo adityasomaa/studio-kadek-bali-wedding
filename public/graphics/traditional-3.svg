@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="t3bg" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#edf4f5"/><stop offset="100%" stop-color="#f7fbfc"/>
+    </linearGradient>
+    <linearGradient id="t3mass" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#e6f3f5"/><stop offset="100%" stop-color="#bed6da"/>
+    </linearGradient>
+    <clipPath id="t3clip"><rect x="29" y="29" width="742" height="942"/></clipPath>
+  </defs>
+  <rect width="800" height="1000" fill="url(#t3bg)"/>
+  <g clip-path="url(#t3clip)">
+    <line x1="400" y1="60" x2="400" y2="940" stroke="#cfd9db" stroke-width="1"/>
+    <rect x="190" y="290" width="420" height="420" rx="0" fill="none" stroke="#226f7b" stroke-width="2"/>
+    <rect x="229" y="329" width="342" height="342" rx="0" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <rect x="268" y="368" width="264" height="264" rx="0" fill="none" stroke="#226f7b" stroke-width="2"/>
+    <rect x="307" y="407" width="186" height="186" rx="0" fill="none" stroke="#84adb4" stroke-width="1"/>
+    <rect x="346" y="446" width="108" height="108" rx="0" fill="#226f7b" stroke="#226f7b" stroke-width="2"/>
+    <line x1="100" y1="500" x2="170" y2="500" stroke="#226f7b" stroke-width="2"/>
+    <line x1="630" y1="500" x2="700" y2="500" stroke="#226f7b" stroke-width="2"/>
+  </g>
+    <rect x="28.5" y="28.5" width="743" height="943" rx="0" fill="none" stroke="#cfd9db" stroke-width="1"/>
+</svg>

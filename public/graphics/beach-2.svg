@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="b2sky" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#e6f3f5"/><stop offset="100%" stop-color="#f7fbfc"/>
+    </linearGradient>
+    <linearGradient id="b2sea" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#edf4f5"/><stop offset="100%" stop-color="#dfeaec"/>
+    </linearGradient>
+    <linearGradient id="b2disc" x1="32.9%" y1="3%" x2="67.1%" y2="97%">
+      <stop offset="0%" stop-color="#bed6da"/><stop offset="100%" stop-color="#e6f3f5"/>
+    </linearGradient>
+    <clipPath id="b2clip"><rect x="29" y="29" width="742" height="942"/></clipPath>
+    <clipPath id="b2sky-c"><rect x="29" y="29" width="742" height="491"/></clipPath>
+    <clipPath id="b2sea-c"><rect x="29" y="520" width="742" height="451"/></clipPath>
+  </defs>
+  <rect width="800" height="1000" fill="url(#b2sky)"/>
+  <g clip-path="url(#b2sea-c)">
+    <rect x="0" y="520" width="800" height="480" rx="0" fill="url(#b2sea)" stroke="none" stroke-width="1"/>
+  </g>
+  <g clip-path="url(#b2clip)">
+    <circle cx="250" cy="460.6" r="108" fill="url(#b2disc)" stroke="none" stroke-width="1"/>
+    <circle cx="250" cy="460.6" r="108" fill="none" stroke="#226f7b" stroke-width="2"/>
+    <rect x="70" y="330" width="40" height="190" rx="0" fill="#226f7b" stroke="none" stroke-width="1"/>
+    <line x1="29" y1="520" x2="771" y2="520" stroke="#142023" stroke-width="1.5"/>
+    <line x1="260" y1="554" x2="730" y2="554" stroke="#84adb4" stroke-width="1"/>
+    <line x1="147.7" y1="586.4" x2="727.8" y2="586.4" stroke="#84adb4" stroke-width="1"/>
+    <line x1="225.5" y1="618.7" x2="725.6" y2="618.7" stroke="#84adb4" stroke-width="1"/>
+    <line x1="132.2" y1="651.1" x2="697.3" y2="651.1" stroke="#84adb4" stroke-width="1"/>
+    <line x1="190.9" y1="683.5" x2="721.3" y2="683.5" stroke="#84adb4" stroke-width="1"/>
+    <line x1="116.6" y1="715.8" x2="719.1" y2="715.8" stroke="#84adb4" stroke-width="1"/>
+    <line x1="156.4" y1="748.2" x2="664.5" y2="748.2" stroke="#84adb4" stroke-width="1"/>
+    <line x1="101.1" y1="780.5" x2="714.7" y2="780.5" stroke="#226f7b" stroke-width="2.5"/>
+    <line x1="121.8" y1="812.9" x2="712.5" y2="812.9" stroke="#84adb4" stroke-width="1"/>
+    <line x1="85.5" y1="845.3" x2="631.8" y2="845.3" stroke="#84adb4" stroke-width="1"/>
+    <line x1="87.3" y1="877.6" x2="708.2" y2="877.6" stroke="#84adb4" stroke-width="1"/>
+    <line x1="70" y1="910" x2="706" y2="910" stroke="#84adb4" stroke-width="1"/>
+  </g>
+    <rect x="28.5" y="28.5" width="743" height="943" rx="0" fill="none" stroke="#cfd9db" stroke-width="1"/>
+</svg>
