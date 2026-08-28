@@ -193,6 +193,8 @@ scripts/                 font conversion, graphics generation, the three audits
 
 **Transitions never depend on `requestAnimationFrame` alone.** `src/lib/wait.ts` races rAF against `setTimeout`. rAF stops firing in a background tab, and a sequence chained on it alone leaves the curtain covering the page forever.
 
+**An unknown `[locale]` segment is a 404, not the home page.** The proxy matcher skips any path containing a dot, so `/foo.txt` reaches the home route with `locale` set to `foo.txt`. Falling back to the default locale there publishes the home page at an unbounded set of URLs with a 200 — a soft 404 that search engines index as duplicate content. `src/app/[locale]/page.tsx` calls `notFound()` instead.
+
 **No grain, no noise, no film texture.** Depth comes from gradients, line weight, and scale contrast.
 
 **Translucent colours are sRGB.** Translucent `oklch()` / `color-mix()` values did not composite reliably in testing; the lightbox scrim uses element opacity and shadows use plain `rgb(... / a)`.
