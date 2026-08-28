@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { client, locales } from '@/config/client.config'
 import { getDictionary } from '@/i18n/dictionaries'
+import { notFound } from 'next/navigation'
 import { defaultLocale, hrefFor, isLocale, type Locale } from '@/i18n/routes'
 import { Hero } from '@/components/Hero'
 import { SectionHeader } from '@/components/SectionHeader'
@@ -40,7 +41,12 @@ export async function generateMetadata({
  */
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: raw } = await params
-  const locale: Locale = isLocale(raw) ? raw : defaultLocale
+  // Anything with a file extension skips the proxy matcher, so an unknown path
+  // like /foo.txt arrives here as the [locale] segment. Falling back to the
+  // default locale would serve the home page at an unbounded set of URLs with
+  // a 200; the segment has to 404 instead.
+  if (!isLocale(raw)) notFound()
+  const locale: Locale = raw
   const t = getDictionary(locale)
 
   return (
